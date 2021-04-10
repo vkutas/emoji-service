@@ -1,5 +1,10 @@
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+
 import unittest
-import app as tested_app
+from src import app as tested_app
 import json
 
 class FlaskAppTests(unittest.TestCase):
