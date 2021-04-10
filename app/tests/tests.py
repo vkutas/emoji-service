@@ -1,10 +1,6 @@
 import unittest
-from app import app as tested_app
+import app as tested_app
 import json
-
-import sys, os
-myPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, myPath + '/../')
 
 class FlaskAppTests(unittest.TestCase):
 
