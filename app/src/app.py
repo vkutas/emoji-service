@@ -14,7 +14,7 @@ def welcome():
 def say_hello():
     return "Hello World!"
 
-@app.route('/emoji_paste', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def emoji_service():
     if request.method == 'POST':
         content = request.get_json(force=True)
