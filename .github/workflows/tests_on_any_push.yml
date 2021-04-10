@@ -16,6 +16,16 @@ jobs:
 
       - name: Install requirements
         run: pip install -r app/requirements.txt
+             pip install pylint
+
+      # - name: Install pylint
+      #   run:  pip install pylint
+
+      - name: Run pylint on app sources
+        run: pylint app/src/* 
+
+      - name: Run pylint on test sources
+        run: pylint app/tests/* 
 
       - name: Run tests
         run: coverage run app/tests/tests.py
