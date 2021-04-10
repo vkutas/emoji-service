@@ -6,8 +6,8 @@ import random
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
+@app.route("/welcome")
+def welcome():
     return "<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>"
 
 @app.route("/say_hello")
