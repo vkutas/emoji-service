@@ -6,4 +6,4 @@ task4/.vagrant
 !task2/quotes.json
 ansible_provisioning
 .vscode
-.github/*
+#.github/*
