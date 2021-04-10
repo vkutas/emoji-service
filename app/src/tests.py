@@ -10,7 +10,7 @@ class FlaskAppTests(unittest.TestCase):
 
     def test_get_welcome_endpoint(self):
         r = self.app.get('/welcome')
-        self.assertEqual(r.data, b"<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>'")
+        self.assertEqual(r.data, b"<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>")
 
     def test_post_welcome_endpoint(self):
         r = self.app.post('/welcome')
