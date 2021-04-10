@@ -4,3 +4,6 @@
 task4/.vagrant
 # Task 2 Data
 !task2/quotes.json
+ansible_provisioning
+.vscode
+.github/*

@@ -6,20 +6,19 @@ import random
 
 app = Flask(__name__)
 
-@app.route("/gretting")
-def hello():
+@app.route("/")
+def home():
     return "<h1 style='color:blue'>Hello from Emoji Service!</h1>"
 
-@app.route('/', methods=['GET', 'POST'])
-def test_post():
+@app.route("/greetings")
+def greetings():
+    return "Hello World!"
+
+@app.route('/emoji_paste', methods=['POST'])
+def emoji_service():
     if request.method == 'POST':
         content = request.get_json(force=True)
         return emoji_provider(content)
-    else:
-        return "You use GET method!"
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
 
 def emoji_provider(emoji_desc):
     """ Take a dict of format {word: 'name', count: n} and
@@ -44,3 +43,20 @@ def emoji_provider(emoji_desc):
     for i in range(count):
         response_body += name + emoji_icon
     return response_body
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('500.html'), 500
+
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0')
+
+def main():
+    app.run(host='0.0.0.0', port=8080)
+
+if __name__ == '__main__':
+    main()
