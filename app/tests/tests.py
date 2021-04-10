@@ -1,6 +1,6 @@
 import unittest
 #import app as tested_app
-from src.app import app as tested_app
+from app.src.app import app as tested_app
 import json
 
 class FlaskAppTests(unittest.TestCase):
@@ -25,10 +25,5 @@ class FlaskAppTests(unittest.TestCase):
         r = self.app.post('/say_hello')
         self.assertEqual(r.status_code, 405)
     
-
-
-
-
-
 if __name__ == '__main__':
     unittest.main()
