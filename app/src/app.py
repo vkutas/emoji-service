@@ -10,8 +10,8 @@ app = Flask(__name__)
 def home():
     return "<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>"
 
-@app.route("/greetings")
-def greetings():
+@app.route("/say_hello")
+def say_hello():
     return "Hello World!"
 
 @app.route('/emoji_paste', methods=['GET', 'POST'])
