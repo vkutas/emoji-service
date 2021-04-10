@@ -8,17 +8,19 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "<h1 style='color:blue'>Hello from Emoji Service!</h1>"
+    return "<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>"
 
 @app.route("/greetings")
 def greetings():
     return "Hello World!"
 
-@app.route('/emoji_paste', methods=['POST'])
+@app.route('/emoji_paste', methods=['GET', 'POST'])
 def emoji_service():
     if request.method == 'POST':
         content = request.get_json(force=True)
         return emoji_provider(content)
+    else:
+        return render_template('greeting.html', url = request.url)
 
 def emoji_provider(emoji_desc):
     """ Take a dict of format {word: 'name', count: n} and
