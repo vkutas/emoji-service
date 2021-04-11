@@ -2,10 +2,10 @@ name: Run tests on any Push event
 on:
   push:
     branches:
-      - '*'
+      - 'off'
   pull_request:
     branches: 
-      - '*'
+      - 'off'
 
 jobs:
   run_tests:

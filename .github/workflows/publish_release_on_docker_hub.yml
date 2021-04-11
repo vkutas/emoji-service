@@ -48,5 +48,7 @@ jobs:
         run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin
 
       - name: Push image to docker.io
-        run: echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin
-             docker push $LOGIN/$NAME:latest
+        run:  docker push $LOGIN/$NAME:latest
+             
+
+            
