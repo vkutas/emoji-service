@@ -20,8 +20,9 @@ def say_hello():
 @app.route('/', methods=['GET', 'POST'])
 def emoji_service():
     """Heart of the app.
-    If recieved GET http request this method returns ugly home page, 
-    while if recieved POST it returns too wired string to discribe here (see emoji_provider func for more details).
+    If recieved GET http request this method returns ugly home page,
+    while if recieved POST it returns too wired string to discribe here.
+    See emoji_provider func for more details.
     """
     if request.method == 'POST':
         content = request.get_json(force=True)

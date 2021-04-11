@@ -22,10 +22,10 @@ jobs:
       #   run:  pip install pylint
 
       - name: Run pylint on app sources
-        run: pylint app/src/* 
+        run: pylint --fail-under=8 app/src/* 
 
       - name: Run pylint on test sources
-        run: pylint app/tests/* 
+        run: pylint --fail-under=3 app/tests/* 
 
       - name: Run tests
         run: coverage run app/tests/tests.py
