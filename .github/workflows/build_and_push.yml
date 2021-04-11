@@ -10,9 +10,9 @@ on:
 jobs:
   - name: Login to DockerHub
     uses: docker/login-action@v1 
-      with:
-        username: ${{ secrets.DOCKER_HUB_LOGIN }}
-        password: ${{ secrets.DOCKER_HUB_PASS }}
+    with:
+      username: ${{ secrets.DOCKER_HUB_LOGIN }}
+      password: ${{ secrets.DOCKER_HUB_PASS }}
 
   - name: Build and push
     id: docker_build
