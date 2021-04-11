@@ -1,0 +1,21 @@
+name: Build and Push Dokcerimage to docker hub
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches: 
+      - 'main'
+
+jobs:
+  deploy:
+    needs: [build_and_pub]
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Set tag to env
+        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:11})
+        
+      - name: Send webhook for deploy
+        run: "curl --silent --show-error --fail -X POST ${{ secrets.DEPLOYMENT_SERVER }} -H 'Authorization: ${{ secrets.DEPLOYMENT_TOKEN }}' -H 'Content-Type: application/json' -d '{\"owner\": \"${{ secrets.DOCKER_HUB_LOGIN }}\", \"repository\": \"${{ secrets.DOCKER_HUB_REPO }}\", \"tag\": \"release\", \"ports\": {\"8080\": 8080}}'"
+      
+      
