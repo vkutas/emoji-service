@@ -3,7 +3,7 @@ name: Publish release on Docker Hub
 on:
   push:
     branches:
-      - '*'
+      - 'main'
 
 jobs:
   run_tests:
