@@ -1,11 +1,14 @@
-import os, sys
+"""Application Unit tests"""
+
+import unittest
+import os
+import sys
+
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 
-import unittest
 from src import app as tested_app
-import json
 
 class FlaskAppTests(unittest.TestCase):
 
@@ -15,7 +18,7 @@ class FlaskAppTests(unittest.TestCase):
 
     def test_get_welcome_endpoint(self):
         r = self.app.get('/welcome')
-        self.assertEqual(r.data, b"<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>")
+        self.assertTrue("Welcome to Enterprise Emoji Service!" in r.data)
 
     def test_post_welcome_endpoint(self):
         r = self.app.post('/welcome')
@@ -28,6 +31,6 @@ class FlaskAppTests(unittest.TestCase):
     def test_post_say_hello_endpoint(self):
         r = self.app.post('/say_hello')
         self.assertEqual(r.status_code, 405)
-    
+
 if __name__ == '__main__':
     unittest.main()
