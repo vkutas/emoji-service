@@ -39,13 +39,14 @@ jobs:
       LOGIN: ${{ secrets.DOCKER_HUB_LOGIN }}
       NAME: ${{ secrets.DOCKER_HUB_REPO }}
     steps:
-      - name: Login to docker.io
-        run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin
-
       - uses: actions/checkout@master
 
       - name: Build image
         run: docker build -t $LOGIN/$NAME:latest -f Dockerfile .
 
+      - name: Login to docker.io
+        run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin
+
       - name: Push image to docker.io
-        run: docker push $LOGIN/$NAME:latest
+        run: echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin
+             docker push $LOGIN/$NAME:latest
