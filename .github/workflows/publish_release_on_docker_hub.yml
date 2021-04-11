@@ -44,11 +44,9 @@ jobs:
       - name: Build image
         run: docker build -t $LOGIN/$NAME:latest -f Dockerfile .
 
-      - name: Login to docker.io
-        run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin
+      - name: Login and Push
+        run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin && docker push $LOGIN/$NAME:latest
 
-      - name: Push image to docker.io
-        run:  docker push $LOGIN/$NAME:latest
              
 
             

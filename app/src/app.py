@@ -54,7 +54,7 @@ def emoji_provider(emoji_desc):
     return response_body
 
 @app.errorhandler(404)
-def page_not_found():
+def page_not_found(error_code):
     """Custom 404 Page """
     return render_template('404.html'), 404
 
