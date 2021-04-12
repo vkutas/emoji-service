@@ -21,7 +21,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:release
+        tags: ${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_REF##*/}
   
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
