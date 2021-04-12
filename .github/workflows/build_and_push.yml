@@ -7,20 +7,22 @@ on:
 jobs:
   buld_and_push:
     runs-on: [ubuntu-latest]
+    env:
+      TAG_ENV: "${GITHUB_REF##*/}"
 
     steps:
   
     - name: Get the version v1
       id: get_version_v1
-      run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_REF##*/}"
+      run: echo ::set-output name=TAG::${GITHUB_REF##*/}
 
     - name: Get the version v2
       id: get_version_v2
-      run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:$(echo $GITHUB_REF | cut -d / -f 3)"
+      run: echo "THe tag is ${{ steps.get_version_v1.outputs.TAG }}"
 
     - name: Get tag only
       id: get_tag_only_v1
-      run: echo  "$GITHUB_REF"
+      run: echo  "TAG_ENV is $TAG_ENV"
 
     - name: Get tag only
       id: get_tag_only_v2
