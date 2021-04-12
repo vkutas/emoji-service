@@ -9,6 +9,14 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
+  
+    - name: Get the version v1
+      id: get_version_v1
+      run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:${GITHUB_REF##*/}"
+
+    - name: Get the version v2
+      id: get_version_v2
+      run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:$(echo $GITHUB_REF | cut -d / -f 3)
 
     - name: Login to DockerHub
       uses: docker/login-action@v1 
