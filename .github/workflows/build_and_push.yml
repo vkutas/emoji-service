@@ -58,9 +58,9 @@ jobs:
       run: echo ${{ steps.docker_build.outputs.digest }}
 
   deploy:
-  runs-on: [ubuntu-latest]
-  needs: [buld_and_push]
-  steps:        
-    - name: Send webhook for deploy
-      run: "curl -s -S -f -X POST ${{ secrets.DEPLOYMENT_SERVER }} -H 'Authorization: ${{ secrets.DEPLOYMENT_TOKEN }}' -H 'Content-Type: application/json' -d '{\"owner\": \"${{ secrets.DOCKER_HUB_LOGIN }}\", \"repository\": \"${{ secrets.DOCKER_HUB_REPO }}\", \"tag\": \"${GITHUB_REF##*/}\"}'"
+    runs-on: [ubuntu-latest]
+    needs: [buld_and_push]
+    steps:        
+      - name: Send webhook for deploy
+        run: "curl -s -S -f -X POST ${{ secrets.DEPLOYMENT_SERVER }} -H 'Authorization: ${{ secrets.DEPLOYMENT_TOKEN }}' -H 'Content-Type: application/json' -d '{\"owner\": \"${{ secrets.DOCKER_HUB_LOGIN }}\", \"repository\": \"${{ secrets.DOCKER_HUB_REPO }}\", \"tag\": \"${GITHUB_REF##*/}\"}'"
 
