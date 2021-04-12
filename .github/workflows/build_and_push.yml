@@ -16,7 +16,19 @@ jobs:
 
     - name: Get the version v2
       id: get_version_v2
-      run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:$(echo $GITHUB_REF | cut -d / -f 3)
+      run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:$(echo $GITHUB_REF | cut -d / -f 3)"
+
+    - name: Get tag only
+      id: get_tag only_v1
+      run: echo  "$GITHUB_REF"
+
+    - name: Get tag only
+      id: get_tag only_v1
+      run: echo  "$(echo $GITHUB_REF | cut -d / -f 3)"
+
+    - name: Get tag only
+      id: get_tag only_v3
+      run: echo  "${GITHUB_REF##*/}"
 
     - name: Login to DockerHub
       uses: docker/login-action@v1 
