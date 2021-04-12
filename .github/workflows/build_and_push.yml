@@ -23,7 +23,7 @@ jobs:
       run: echo  "$GITHUB_REF"
 
     - name: Get tag only
-      id: get_tag_only_v1
+      id: get_tag_only_v2
       run: echo  "$(echo $GITHUB_REF | cut -d / -f 3)"
 
     - name: Get tag only
