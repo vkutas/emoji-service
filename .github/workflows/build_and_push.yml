@@ -19,15 +19,15 @@ jobs:
       run: echo "::debug::${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:$(echo $GITHUB_REF | cut -d / -f 3)"
 
     - name: Get tag only
-      id: get_tag only_v1
+      id: get_tag_only_v1
       run: echo  "$GITHUB_REF"
 
     - name: Get tag only
-      id: get_tag only_v1
+      id: get_tag_only_v1
       run: echo  "$(echo $GITHUB_REF | cut -d / -f 3)"
 
     - name: Get tag only
-      id: get_tag only_v3
+      id: get_tag_only_v3
       run: echo  "${GITHUB_REF##*/}"
 
     - name: Login to DockerHub
