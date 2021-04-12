@@ -2,10 +2,10 @@ name: Build and Push Docker to docker hub
 on:
   push:
     branches:
-      - 'main'
+      - 'off'
   pull_request:
     branches: 
-      - 'main'
+      - 'off'
 
 jobs:
   deploy:

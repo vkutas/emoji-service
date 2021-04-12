@@ -1,11 +1,8 @@
 name: Build and Push Dokcerimage to docker hub
 on:
   push:
-    branches:
-      - 'off'
-  pull_request:
-    branches: 
-      - 'off'
+    tags:
+      - *-release
 
 jobs:
   buld_and_push:
@@ -24,7 +21,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:dev
+        tags: ${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:release
   
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
