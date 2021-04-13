@@ -3,7 +3,10 @@ name: Publish release on Docker Hub
 on:
   push:
     branches:
-      - 'off'
+     - 'main'
+  pull_request:
+    branches: 
+     - 'main'
 
 jobs:
   run_tests:
@@ -46,7 +49,3 @@ jobs:
 
       - name: Login and Push
         run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin && docker push $LOGIN/$NAME:dev
-
-             
-
-            
