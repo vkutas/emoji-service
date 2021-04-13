@@ -1,4 +1,4 @@
-name: Build and Push Dokcerimage to docker hub
+name: Build Docker image, push to the registry and deploy applicaiton
 on:
   push:
     branches:

@@ -2,14 +2,10 @@ name: Publish release on Docker Hub
 
 on:
   push:
-    branches:
-     - 'main'
     tags:
       - '*-dev' 
       - '*-test' 
   pull_request:
-    branches: 
-     - 'main'
     tags:
       - '*-dev' 
       - '*-test' 
