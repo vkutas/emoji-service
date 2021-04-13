@@ -4,9 +4,15 @@ on:
   push:
     branches:
      - 'main'
+    tags:
+      - '*-dev' 
+      - '*-test' 
   pull_request:
     branches: 
      - 'main'
+    tags:
+      - '*-dev' 
+      - '*-test' 
 
 jobs:
   run_tests:
@@ -35,17 +41,28 @@ jobs:
       - name: Tests report
         run: coverage report
   
-  build_and_publish:
-    needs: [run_tests]
+  buld_and_push:
     runs-on: [ubuntu-latest]
-    env:
-      LOGIN: ${{ secrets.DOCKER_HUB_LOGIN }}
-      NAME: ${{ secrets.DOCKER_HUB_REPO }}
+    needs: [run_tests]
+
     steps:
-      - uses: actions/checkout@master
+  
+    - name: Get image tag
+      id: get_tag
+      run: echo ::set-output name=TAG::${GITHUB_REF##*/}
 
-      - name: Build image
-        run: docker build -t $LOGIN/$NAME:dev -f Dockerfile .
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKER_HUB_LOGIN }}
+        password: ${{ secrets.DOCKER_HUB_PASS }}
 
-      - name: Login and Push
-        run:  echo ${{ secrets.DOCKER_HUB_PASS }} | docker login -u ${{ secrets.DOCKER_HUB_LOGIN }} --password-stdin && docker push $LOGIN/$NAME:dev
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_LOGIN }}/${{ secrets.DOCKER_HUB_REPO }}:${{ steps.get_tag.outputs.TAG }}
+  
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
