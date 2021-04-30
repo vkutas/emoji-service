@@ -3,6 +3,9 @@ on:
   push:
     tags:
       - '*-release'
+  pull_request:
+    tags:
+      - '*-release'
 
 jobs:
   run_tests:
