@@ -3,11 +3,15 @@ on:
   push:
     tags-ignore:
       - '*-release'
+      - '*-dev' 
+      - '*-test' 
     branches:
       - '**'
   pull_request:
     tags-ignore:
       - '*-release'
+      - '*-dev' 
+      - '*-test' 
     branches:
       - '**'
 
