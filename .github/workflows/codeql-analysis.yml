@@ -14,10 +14,10 @@ name: "CodeQL"
 on:
   push:
     branches:
-     - '*'
+     - 'off'
   pull_request:
     branches: 
-     - '*'
+     - 'off'
 
 jobs:
   analyze:
