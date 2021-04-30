@@ -7,7 +7,7 @@ import emoji
 
 app = Flask(__name__)
 
-@app.route("/hi")
+@app.route("/welcome")
 def welcome():
     """Say Hi to user whom accidentally come across this site"""
     return "<h1 style='color:#323232'>Welcome to Enterprise Emoji Service!</h1>"
