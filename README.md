@@ -21,3 +21,6 @@ Because server uses self-signed SSL certificate, you should use `-k` flag to ask
  **WARNING: Don't use mentioned above approach with production servers, only for testing purpose on local machine!**
 
 GET http and https request returns greetings page. You can see it in your browser typing server IP in address line.
+
+New Line
+New Line2
